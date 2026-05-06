@@ -1,3 +1,4 @@
+import "./index.css";
 import TourPage from "./pages/TourPage";
 
 export default function App() {
