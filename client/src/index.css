@@ -1,0 +1,39 @@
+.minimap {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 300px;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.88);
+  border: 2px solid white;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.minimap-image {
+  width: 100%;
+  display: block;
+}
+
+.map-marker {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: #1da1ff;
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.45);
+  transform-origin: center center;
+}
+
+.map-direction {
+  position: absolute;
+  left: 50%;
+  top: -18px;
+  width: 0;
+  height: 0;
+  transform: translateX(-50%);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 18px solid #1da1ff;
+}
