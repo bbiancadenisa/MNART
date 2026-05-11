@@ -2,11 +2,24 @@ import "aframe";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
-type RoomId = "room1" | "room2" | "room3";
+type RoomId =
+  | "room1"
+  | "room2"
+  | "room3"
+  | "room4"
+  | "room5"
+  | "room6"
+  | "room7"
+  | "room8"
+  | "room9"
+  | "room10";
+
+type Direction = "next" | "previous";
 
 type Hotspot = {
   targetRoom: RoomId;
   label: string;
+  direction: Direction;
   position: THREE.Vector3;
 };
 
@@ -30,11 +43,11 @@ const rooms = {
       {
         targetRoom: "room2",
         label: "Enter Room 2",
+        direction: "next",
         position: new THREE.Vector3(0, 1.45, -3.5)
       }
     ]
   },
-
   room2: {
     image: "/panoramas/room2.png",
     rotation: "0 -90 0",
@@ -43,16 +56,17 @@ const rooms = {
       {
         targetRoom: "room1",
         label: "Back to Room 1",
+        direction: "previous",
         position: new THREE.Vector3(-2.5, 1.45, -3.5)
       },
       {
         targetRoom: "room3",
         label: "Enter Room 3",
+        direction: "next",
         position: new THREE.Vector3(2.5, 1.45, -3.5)
       }
     ]
   },
-
   room3: {
     image: "/panoramas/room3.png",
     rotation: "0 -90 0",
@@ -61,7 +75,141 @@ const rooms = {
       {
         targetRoom: "room2",
         label: "Back to Room 2",
-        position: new THREE.Vector3(0, 1.45, -3.5)
+        direction: "previous",
+        position: new THREE.Vector3(-2.5, 1.45, -3.5)
+      },
+      {
+        targetRoom: "room4",
+        label: "Enter Room 4",
+        direction: "next",
+        position: new THREE.Vector3(2.5, 1.45, -3.5)
+      }
+    ]
+  },
+  room4: {
+    image: "/panoramas/room4.png",
+    rotation: "0 -90 0",
+    fov: 90,
+    hotspots: [
+      {
+        targetRoom: "room3",
+        label: "Back to Room 3",
+        direction: "previous",
+        position: new THREE.Vector3(-2.5, 1.45, -3.5)
+      },
+      {
+        targetRoom: "room5",
+        label: "Enter Room 5",
+        direction: "next",
+        position: new THREE.Vector3(2.5, 1.45, -3.5)
+      }
+    ]
+  },
+  room5: {
+    image: "/panoramas/room5.png",
+    rotation: "0 -90 0",
+    fov: 90,
+    hotspots: [
+      {
+        targetRoom: "room4",
+        label: "Back to Room 4",
+        direction: "previous",
+        position: new THREE.Vector3(-2.5, 1.45, -3.5)
+      },
+      {
+        targetRoom: "room6",
+        label: "Enter Room 6",
+        direction: "next",
+        position: new THREE.Vector3(2.5, 1.45, -3.5)
+      }
+    ]
+  },
+  room6: {
+    image: "/panoramas/room6.png",
+    rotation: "0 -90 0",
+    fov: 90,
+    hotspots: [
+      {
+        targetRoom: "room5",
+        label: "Back to Room 5",
+        direction: "previous",
+        position: new THREE.Vector3(-2.5, 1.45, -3.5)
+      },
+      {
+        targetRoom: "room7",
+        label: "Enter Room 7",
+        direction: "next",
+        position: new THREE.Vector3(2.5, 1.45, -3.5)
+      }
+    ]
+  },
+  room7: {
+    image: "/panoramas/room7.png",
+    rotation: "0 -90 0",
+    fov: 90,
+    hotspots: [
+      {
+        targetRoom: "room6",
+        label: "Back to Room 6",
+        direction: "previous",
+        position: new THREE.Vector3(-2.5, 1.45, -3.5)
+      },
+      {
+        targetRoom: "room8",
+        label: "Enter Room 8",
+        direction: "next",
+        position: new THREE.Vector3(2.5, 1.45, -3.5)
+      }
+    ]
+  },
+  room8: {
+    image: "/panoramas/room8.png",
+    rotation: "0 -90 0",
+    fov: 90,
+    hotspots: [
+      {
+        targetRoom: "room7",
+        label: "Back to Room 7",
+        direction: "previous",
+        position: new THREE.Vector3(-2.5, 1.45, -3.5)
+      },
+      {
+        targetRoom: "room9",
+        label: "Enter Room 9",
+        direction: "next",
+        position: new THREE.Vector3(2.5, 1.45, -3.5)
+      }
+    ]
+  },
+  room9: {
+    image: "/panoramas/room9.png",
+    rotation: "0 -90 0",
+    fov: 90,
+    hotspots: [
+      {
+        targetRoom: "room8",
+        label: "Back to Room 8",
+        direction: "previous",
+        position: new THREE.Vector3(-2.5, 1.45, -3.5)
+      },
+      {
+        targetRoom: "room10",
+        label: "Enter Room 10",
+        direction: "next",
+        position: new THREE.Vector3(2.5, 1.45, -3.5)
+      }
+    ]
+  },
+  room10: {
+    image: "/panoramas/room10.png",
+    rotation: "0 -90 0",
+    fov: 90,
+    hotspots: [
+      {
+        targetRoom: "room9",
+        label: "Back to Room 9",
+        direction: "previous",
+        position: new THREE.Vector3(-2.5, 1.45, -3.5)
       }
     ]
   }
@@ -72,17 +220,11 @@ export default function TourPage() {
 
   const [currentRoom, setCurrentRoom] = useState<RoomId>("room1");
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const room = rooms[currentRoom];
 
   const [visibleHotspots, setVisibleHotspots] = useState<
-    Array<{
-      hotspot: Hotspot;
-      x: number;
-      y: number;
-      visible: boolean;
-    }>
+    Array<{ hotspot: Hotspot; x: number; y: number; visible: boolean }>
   >([]);
-
-  const room = rooms[currentRoom];
 
   const goToRoom = (targetRoom: RoomId) => {
     if (isTransitioning) return;
@@ -126,24 +268,20 @@ export default function TourPage() {
           Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2)
         );
 
-        const isInFront = projected.z < 1;
-        const isWithinRange = distanceFromCenter <= 500;
-
         return {
           hotspot,
           x,
           y,
-          visible: isInFront && isWithinRange && !isTransitioning
+          visible:
+            projected.z < 1 && distanceFromCenter <= 500 && !isTransitioning
         };
       });
 
       setVisibleHotspots(projectedHotspots);
-
       animationFrame = requestAnimationFrame(updateHotspots);
     };
 
     updateHotspots();
-
     return () => cancelAnimationFrame(animationFrame);
   }, [currentRoom, isTransitioning, room.hotspots]);
 
@@ -162,11 +300,16 @@ export default function TourPage() {
         ref={sceneRef}
         vr-mode-ui="enabled: true"
         renderer="antialias: true; colorManagement: true;"
+        style={{
+          transform: isTransitioning ? "scale(1.12)" : "scale(1)",
+          transition: "transform 700ms ease-in-out",
+          transformOrigin: "center center"
+        }}
       >
         <a-assets>
-          <img id="room1" src="/panoramas/room1.png" alt="" />
-          <img id="room2" src="/panoramas/room2.png" alt="" />
-          <img id="room3" src="/panoramas/room31.png" alt="" />
+          {Object.entries(rooms).map(([id, config]) => (
+            <img key={id} id={id} src={config.image} alt="" />
+          ))}
         </a-assets>
 
         <a-sky src={`#${currentRoom}`} rotation={room.rotation}></a-sky>
@@ -192,16 +335,22 @@ export default function TourPage() {
                 height: 64,
                 borderRadius: "50%",
                 border: "2px solid white",
-                background: "rgba(255, 255, 255, 0.25)",
+                background:
+                  hotspot.direction === "next"
+                    ? "rgba(0, 180, 80, 0.65)"
+                    : "rgba(220, 40, 40, 0.65)",
                 color: "white",
                 fontSize: 30,
                 cursor: "pointer",
                 backdropFilter: "blur(6px)",
-                boxShadow: "0 0 20px rgba(255,255,255,0.8)"
+                boxShadow:
+                  hotspot.direction === "next"
+                    ? "0 0 20px rgba(0,255,120,0.85)"
+                    : "0 0 20px rgba(255,70,70,0.85)"
               }}
               title={hotspot.label}
             >
-              →
+              {hotspot.direction === "next" ? "→" : "←"}
             </button>
           )
       )}
@@ -212,7 +361,7 @@ export default function TourPage() {
           position: "fixed",
           inset: 0,
           background: "black",
-          opacity: isTransitioning ? 1 : 0,
+          opacity: isTransitioning ? 0.25 : 0,
           transition: "opacity 450ms ease-in-out",
           zIndex: 999
         }}
