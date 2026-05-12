@@ -17,7 +17,7 @@ export const rooms = {
     rotation: "0 -90 0",
     fov: 80,
     spawnYaw: 0,
-    map: { x: 230, y: 250, northOffset: -110 },
+    map: { x: 222, y: 225, northOffset: 70 },
     hotspots: [
       {
         targetRoom: "room2",
@@ -33,7 +33,7 @@ export const rooms = {
     rotation: "0 -90 0",
     fov: 92,
     spawnYaw: 40,
-    map: { x: 255, y: 165, northOffset: -120 },
+    map: { x: 255, y: 165, northOffset: 140 },
     hotspots: [
       {
         targetRoom: "room1",
@@ -55,7 +55,7 @@ export const rooms = {
     rotation: "0 -90 0",
     fov: 90,
     spawnYaw: 0,
-    map: { x: 255, y: 115, northOffset: -70 },
+    map: { x: 270, y: 115, northOffset: 93 },
     hotspots: [
       {
         targetRoom: "room2",
@@ -77,7 +77,7 @@ export const rooms = {
     rotation: "0 -90 0",
     fov: 90,
     spawnYaw: 15,
-    map: { x: 255, y: 50, northOffset: 0 },
+    map: { x: 230, y: 30, northOffset: 150 },
     hotspots: [
       {
         targetRoom: "room3",
@@ -99,7 +99,7 @@ export const rooms = {
     rotation: "0 -90 0",
     fov: 90,
     spawnYaw: 280,
-    map: { x: 120, y: 120, northOffset: 180 },
+    map: { x: 125, y: 120, northOffset: 190 },
     hotspots: [
       {
         targetRoom: "room4",
@@ -121,7 +121,7 @@ export const rooms = {
     rotation: "0 -90 0",
     fov: 90,
     spawnYaw: 50,
-    map: { x: 100, y: 210, northOffset: 0 },
+    map: { x: 155, y: 220, northOffset: -60 },
     hotspots: [
       {
         targetRoom: "room5",
@@ -143,7 +143,7 @@ export const rooms = {
     rotation: "0 -90 0",
     fov: 90,
     spawnYaw: 80,
-    map: { x: 120, y: 260, northOffset: -20 },
+    map: { x: 145, y: 265, northOffset: 305 },
     hotspots: [
       {
         targetRoom: "room6",
@@ -165,7 +165,7 @@ export const rooms = {
     rotation: "0 -90 0",
     fov: 90,
     spawnYaw: 0,
-    map: { x: 200, y: 310, northOffset: 0 },
+    map: { x: 190, y: 290, northOffset: 205 },
     hotspots: [
       {
         targetRoom: "room7",
@@ -187,7 +187,7 @@ export const rooms = {
     rotation: "0 -90 0",
     fov: 90,
     spawnYaw: 50,
-    map: { x: 270, y: 310, northOffset: 80 },
+    map: { x: 290, y: 290, northOffset: 215 },
     hotspots: [
       {
         targetRoom: "room8",
@@ -209,7 +209,7 @@ export const rooms = {
     rotation: "0 -90 0",
     fov: 90,
     spawnYaw: -50,
-    map: { x: 430, y: 320, northOffset: 90 },
+    map: { x: 450, y: 315, northOffset: 210 },
     hotspots: [
       {
         targetRoom: "room9",

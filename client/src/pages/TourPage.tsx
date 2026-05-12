@@ -78,7 +78,7 @@ export default function TourPage() {
         const direction = new THREE.Vector3();
         camera.getWorldDirection(direction);
 
-        const angle = Math.atan2(direction.x, direction.z) * (180 / Math.PI);
+        const angle = Math.atan2(direction.x, -direction.z) * (180 / Math.PI);
         setViewerAngle(angle);
       }
 
