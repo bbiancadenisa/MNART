@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import type * as THREE from "three";
 
 export type RoomId =
   | "room1"
@@ -21,12 +21,19 @@ export type Hotspot = {
   position: THREE.Vector3;
 };
 
+export type RoomMapConfig = {
+  x: number;
+  y: number;
+  northOffset: number;
+};
+
 export type RoomConfig = {
   image: string;
   rotation: string;
   fov: number;
-  hotspots: Hotspot[];
   spawnYaw: number;
+  map: RoomMapConfig;
+  hotspots: Hotspot[];
 };
 
 export type AFrameSceneElement = HTMLElement & {

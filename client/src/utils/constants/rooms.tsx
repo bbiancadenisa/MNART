@@ -10,12 +10,14 @@ import room8Img from "../../assets/panoramas/room8.png";
 import room9Img from "../../assets/panoramas/room9.png";
 import { sphericalPosition } from "../sphericalPosition";
 import type { RoomConfig, RoomId } from "../types/tourTypes";
+
 export const rooms = {
   room1: {
     image: room1Img,
     rotation: "0 -90 0",
     fov: 80,
     spawnYaw: 0,
+    map: { x: 230, y: 250, northOffset: -110 },
     hotspots: [
       {
         targetRoom: "room2",
@@ -25,11 +27,13 @@ export const rooms = {
       }
     ]
   },
+
   room2: {
     image: room2Img,
     rotation: "0 -90 0",
     fov: 92,
     spawnYaw: 40,
+    map: { x: 255, y: 165, northOffset: -120 },
     hotspots: [
       {
         targetRoom: "room1",
@@ -45,11 +49,13 @@ export const rooms = {
       }
     ]
   },
+
   room3: {
     image: room3Img,
     rotation: "0 -90 0",
     fov: 90,
     spawnYaw: 0,
+    map: { x: 255, y: 115, northOffset: -70 },
     hotspots: [
       {
         targetRoom: "room2",
@@ -65,11 +71,13 @@ export const rooms = {
       }
     ]
   },
+
   room4: {
     image: room4Img,
     rotation: "0 -90 0",
     fov: 90,
     spawnYaw: 15,
+    map: { x: 255, y: 50, northOffset: 0 },
     hotspots: [
       {
         targetRoom: "room3",
@@ -85,11 +93,13 @@ export const rooms = {
       }
     ]
   },
+
   room5: {
     image: room5Img,
     rotation: "0 -90 0",
     fov: 90,
     spawnYaw: 280,
+    map: { x: 120, y: 120, northOffset: 180 },
     hotspots: [
       {
         targetRoom: "room4",
@@ -105,11 +115,13 @@ export const rooms = {
       }
     ]
   },
+
   room6: {
     image: room6Img,
     rotation: "0 -90 0",
     fov: 90,
     spawnYaw: 50,
+    map: { x: 100, y: 210, northOffset: 0 },
     hotspots: [
       {
         targetRoom: "room5",
@@ -125,11 +137,13 @@ export const rooms = {
       }
     ]
   },
+
   room7: {
     image: room7Img,
     rotation: "0 -90 0",
     fov: 90,
     spawnYaw: 80,
+    map: { x: 120, y: 260, northOffset: -20 },
     hotspots: [
       {
         targetRoom: "room6",
@@ -145,11 +159,13 @@ export const rooms = {
       }
     ]
   },
+
   room8: {
     image: room8Img,
     rotation: "0 -90 0",
     fov: 90,
     spawnYaw: 0,
+    map: { x: 200, y: 310, northOffset: 0 },
     hotspots: [
       {
         targetRoom: "room7",
@@ -165,11 +181,13 @@ export const rooms = {
       }
     ]
   },
+
   room9: {
     image: room9Img,
     rotation: "0 -90 0",
     fov: 90,
     spawnYaw: 50,
+    map: { x: 270, y: 310, northOffset: 80 },
     hotspots: [
       {
         targetRoom: "room8",
@@ -185,11 +203,13 @@ export const rooms = {
       }
     ]
   },
+
   room10: {
     image: room10Img,
     rotation: "0 -90 0",
     fov: 90,
     spawnYaw: -50,
+    map: { x: 430, y: 320, northOffset: 90 },
     hotspots: [
       {
         targetRoom: "room9",
