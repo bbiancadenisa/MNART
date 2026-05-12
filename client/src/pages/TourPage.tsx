@@ -1,225 +1,21 @@
 import "aframe";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-
-type RoomId =
-  | "room1"
-  | "room2"
-  | "room3"
-  | "room4"
-  | "room5"
-  | "room6"
-  | "room7"
-  | "room8"
-  | "room9"
-  | "room10";
-
-type Direction = "next" | "previous";
-
-type Hotspot = {
-  targetRoom: RoomId;
-  label: string;
-  direction: Direction;
-  position: THREE.Vector3;
-};
-
-type RoomConfig = {
-  image: string;
-  rotation: string;
-  fov: number;
-  hotspots: Hotspot[];
-};
-
-type AFrameSceneElement = HTMLElement & {
-  camera?: THREE.Camera;
-};
-
-const rooms = {
-  room1: {
-    image: "/panoramas/room1.png",
-    rotation: "0 -90 0",
-    fov: 80,
-    hotspots: [
-      {
-        targetRoom: "room2",
-        label: "Enter Room 2",
-        direction: "next",
-        position: new THREE.Vector3(0, 1.45, -3.5)
-      }
-    ]
-  },
-  room2: {
-    image: "/panoramas/room2.png",
-    rotation: "0 -90 0",
-    fov: 92,
-    hotspots: [
-      {
-        targetRoom: "room1",
-        label: "Back to Room 1",
-        direction: "previous",
-        position: new THREE.Vector3(-2.5, 1.45, -3.5)
-      },
-      {
-        targetRoom: "room3",
-        label: "Enter Room 3",
-        direction: "next",
-        position: new THREE.Vector3(2.5, 1.45, -3.5)
-      }
-    ]
-  },
-  room3: {
-    image: "/panoramas/room3.png",
-    rotation: "0 -90 0",
-    fov: 90,
-    hotspots: [
-      {
-        targetRoom: "room2",
-        label: "Back to Room 2",
-        direction: "previous",
-        position: new THREE.Vector3(-2.5, 1.45, -3.5)
-      },
-      {
-        targetRoom: "room4",
-        label: "Enter Room 4",
-        direction: "next",
-        position: new THREE.Vector3(2.5, 1.45, -3.5)
-      }
-    ]
-  },
-  room4: {
-    image: "/panoramas/room4.png",
-    rotation: "0 -90 0",
-    fov: 90,
-    hotspots: [
-      {
-        targetRoom: "room3",
-        label: "Back to Room 3",
-        direction: "previous",
-        position: new THREE.Vector3(-2.5, 1.45, -3.5)
-      },
-      {
-        targetRoom: "room5",
-        label: "Enter Room 5",
-        direction: "next",
-        position: new THREE.Vector3(2.5, 1.45, -3.5)
-      }
-    ]
-  },
-  room5: {
-    image: "/panoramas/room5.png",
-    rotation: "0 -90 0",
-    fov: 90,
-    hotspots: [
-      {
-        targetRoom: "room4",
-        label: "Back to Room 4",
-        direction: "previous",
-        position: new THREE.Vector3(-2.5, 1.45, -3.5)
-      },
-      {
-        targetRoom: "room6",
-        label: "Enter Room 6",
-        direction: "next",
-        position: new THREE.Vector3(2.5, 1.45, -3.5)
-      }
-    ]
-  },
-  room6: {
-    image: "/panoramas/room6.png",
-    rotation: "0 -90 0",
-    fov: 90,
-    hotspots: [
-      {
-        targetRoom: "room5",
-        label: "Back to Room 5",
-        direction: "previous",
-        position: new THREE.Vector3(-2.5, 1.45, -3.5)
-      },
-      {
-        targetRoom: "room7",
-        label: "Enter Room 7",
-        direction: "next",
-        position: new THREE.Vector3(2.5, 1.45, -3.5)
-      }
-    ]
-  },
-  room7: {
-    image: "/panoramas/room7.png",
-    rotation: "0 -90 0",
-    fov: 90,
-    hotspots: [
-      {
-        targetRoom: "room6",
-        label: "Back to Room 6",
-        direction: "previous",
-        position: new THREE.Vector3(-2.5, 1.45, -3.5)
-      },
-      {
-        targetRoom: "room8",
-        label: "Enter Room 8",
-        direction: "next",
-        position: new THREE.Vector3(2.5, 1.45, -3.5)
-      }
-    ]
-  },
-  room8: {
-    image: "/panoramas/room8.png",
-    rotation: "0 -90 0",
-    fov: 90,
-    hotspots: [
-      {
-        targetRoom: "room7",
-        label: "Back to Room 7",
-        direction: "previous",
-        position: new THREE.Vector3(-2.5, 1.45, -3.5)
-      },
-      {
-        targetRoom: "room9",
-        label: "Enter Room 9",
-        direction: "next",
-        position: new THREE.Vector3(2.5, 1.45, -3.5)
-      }
-    ]
-  },
-  room9: {
-    image: "/panoramas/room9.png",
-    rotation: "0 -90 0",
-    fov: 90,
-    hotspots: [
-      {
-        targetRoom: "room8",
-        label: "Back to Room 8",
-        direction: "previous",
-        position: new THREE.Vector3(-2.5, 1.45, -3.5)
-      },
-      {
-        targetRoom: "room10",
-        label: "Enter Room 10",
-        direction: "next",
-        position: new THREE.Vector3(2.5, 1.45, -3.5)
-      }
-    ]
-  },
-  room10: {
-    image: "/panoramas/room10.png",
-    rotation: "0 -90 0",
-    fov: 90,
-    hotspots: [
-      {
-        targetRoom: "room9",
-        label: "Back to Room 9",
-        direction: "previous",
-        position: new THREE.Vector3(-2.5, 1.45, -3.5)
-      }
-    ]
-  }
-} satisfies Record<RoomId, RoomConfig>;
+import MiniMap from "../components/mini-map/MiniMap";
+import { rooms } from "../utils/constants/rooms";
+import type {
+  AFrameSceneElement,
+  Hotspot,
+  RoomId
+} from "../utils/types/tourTypes";
 
 export default function TourPage() {
   const sceneRef = useRef<AFrameSceneElement | null>(null);
 
   const [currentRoom, setCurrentRoom] = useState<RoomId>("room1");
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [viewerAngle, setViewerAngle] = useState(0);
+  const cameraRef = useRef<HTMLElement | null>(null);
   const room = rooms[currentRoom];
 
   const [visibleHotspots, setVisibleHotspots] = useState<
@@ -241,11 +37,50 @@ export default function TourPage() {
   };
 
   useEffect(() => {
+    const cameraEl = cameraRef.current;
+
+    if (!cameraEl) return;
+
+    cameraEl.setAttribute("rotation", `0 ${room.spawnYaw} 0`);
+
+    type LookControlsComponent = {
+      pitchObject: THREE.Object3D;
+      yawObject: THREE.Object3D;
+    };
+
+    type CameraWithLookControls = HTMLElement & {
+      components?: {
+        ["look-controls"]?: LookControlsComponent;
+      };
+    };
+
+    const typedCameraEl = cameraEl as CameraWithLookControls;
+
+    const lookControls = typedCameraEl.components?.["look-controls"];
+
+    if (lookControls) {
+      lookControls.pitchObject.rotation.x = 0;
+
+      lookControls.yawObject.rotation.y = THREE.MathUtils.degToRad(
+        room.spawnYaw
+      );
+    }
+  }, [currentRoom, room.spawnYaw]);
+
+  useEffect(() => {
     let animationFrame: number;
 
     const updateHotspots = () => {
       const sceneEl = sceneRef.current;
       const camera = sceneEl?.camera;
+
+      if (camera) {
+        const direction = new THREE.Vector3();
+        camera.getWorldDirection(direction);
+
+        const angle = Math.atan2(direction.x, direction.z) * (180 / Math.PI);
+        setViewerAngle(angle);
+      }
 
       if (!camera) {
         animationFrame = requestAnimationFrame(updateHotspots);
@@ -314,7 +149,7 @@ export default function TourPage() {
 
         <a-sky src={`#${currentRoom}`} rotation={room.rotation}></a-sky>
 
-        <a-camera fov={room.fov} position="0 1.6 0">
+        <a-camera ref={cameraRef} fov={room.fov} position="0 1.6 0">
           <a-cursor visible="false"></a-cursor>
         </a-camera>
       </a-scene>
@@ -350,10 +185,15 @@ export default function TourPage() {
               }}
               title={hotspot.label}
             >
-              {hotspot.direction === "next" ? "→" : "←"}
+              {"↑"}
             </button>
           )
       )}
+      <MiniMap
+        currentRoom={currentRoom}
+        viewerAngle={viewerAngle}
+        onRoomClick={goToRoom}
+      />
 
       <div
         style={{
