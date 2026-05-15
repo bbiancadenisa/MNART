@@ -1,0 +1,78 @@
+.end-tour-screen {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.1),
+      transparent 35%
+    ),
+    linear-gradient(135deg, #070707, #15110d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 32px;
+}
+
+.end-tour-card {
+  width: min(720px, 92vw);
+  padding: 56px;
+  border-radius: 28px;
+  background: rgba(20, 20, 20, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.55);
+  text-align: center;
+}
+
+.end-tour-kicker {
+  margin: 0 0 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.end-tour-card h1 {
+  margin: 0;
+  font-size: clamp(38px, 5vw, 64px);
+  line-height: 1.05;
+}
+
+.end-tour-card p {
+  margin: 22px auto 34px;
+  max-width: 520px;
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.82;
+}
+
+.end-tour-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.end-tour-primary,
+.end-tour-secondary {
+  padding: 15px 30px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.end-tour-primary {
+  border: 1px solid rgba(0, 255, 136, 0.85);
+  background: rgba(0, 180, 80, 0.75);
+  color: white;
+  box-shadow: 0 0 24px rgba(0, 255, 136, 0.35);
+}
+
+.end-tour-secondary {
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
