@@ -59,81 +59,89 @@ import type { InfoHotspot } from "../../types/tourTypes";
 export const room7Artworks: InfoHotspot[] = [
   {
     id: "room7-artwork-1",
-    title: "Artwork title",
-    subtitle: "Artist / Date / Technique",
-    description: "Example text",
+    title: "Portrait of a Magistrate",
+    subtitle: "Oil on canvas",
+    description: `This formal portrait depicts a distinguished official dressed in ceremonial robes, symbolizing authority, prestige, and intellectual status. Painted in an academic realist style, the artwork emphasizes dignity, elegance, and social power through rich colors, refined details, and a composed posture.`,
     image: artwork1Img,
     position: sphericalPosition(241, 4)
   },
   {
     id: "room7-artwork-2",
-    title: "Artwork title",
-    subtitle: "Artist / Date / Technique",
-    description: "Example text",
+    title: "View a room for bathing",
+    subtitle: "Paolo Fumagalli | Engraved in copper",
+    description: "",
     image: artwork2Img,
     position: sphericalPosition(277.5, 27)
   },
   {
     id: "room7-artwork-3",
-    title: "Artwork title",
-    subtitle: "Artist / Date / Technique",
-    description: "Example text",
+    title: "Collection",
+    subtitle: "Paolo Fumagalli",
+    description: `Vue du Nouveau Temple, prise du cote occidental Forum | Engraved in copper
+    Sections, Ornaments | Engraved in copper
+    Vue du Temple de Jupiter a Pompei | Copper engraving, using the aquatintand aquaforte`,
     images: [artwork3_1Img, artwork3_2Img, artwork3_3Img],
     position: sphericalPosition(281, 14)
   },
   {
     id: "room7-artwork-4",
-    title: "Artwork title",
-    subtitle: "Artist / Date / Technique",
-    description: "Example text",
+    title: "",
+    subtitle: "",
+    description: `Casa della piccola fontana nella strada di Mercurio presso porto di Stabia | Carlo Oraty| Lithography
+    Pompei- Adone e Venere sua Casa - Strada Mercurio | Unknown, Engraved in copper`,
     image: artwork4Img,
     position: sphericalPosition(299.5, 30)
   },
   {
     id: "room7-artwork-5",
-    title: "Artwork title",
-    subtitle: "Artist / Date / Technique",
-    description: "Example text",
+    title: "",
+    subtitle: "",
+    description: `Pompeii House
+    Pictures brought back to Pompeii | Paolo Fumagalli`,
     image: artwork5Img,
     position: sphericalPosition(306, 10)
   },
   {
     id: "room7-artwork-6",
-    title: "Artwork title",
-    subtitle: "Artist / Date / Technique",
-    description: "Example text",
+    title: "",
+    subtitle: "",
+    description: `View of theater | Paolo Fumaggali
+    Paintings found in Pompeii | Paolo Fumagalli`,
     image: artwork6Img,
     position: sphericalPosition(320, 30)
   },
   {
     id: "room7-artwork-7",
-    title: "Artwork title",
-    subtitle: "Artist / Date / Technique",
-    description: "Example text",
+    title: "",
+    subtitle: "",
+    description: `
+    Paintings and tools found at Pompeii | Paolo Fumagalli
+    View of Salustio's house | Paolo Fumagalli`,
     image: artwork7Img,
     position: sphericalPosition(319.5, 10)
   },
   {
     id: "room7-artwork-8",
-    title: "Artwork title",
-    subtitle: "Artist / Date / Technique",
-    description: "Example text",
+    title: "",
+    subtitle: "",
+    description: `Paintings and tools found at Pompeii | Paolo Fumagalli`,
     image: artwork8Img,
     position: sphericalPosition(333, 27)
   },
   {
     id: "room7-artwork-9",
-    title: "Artwork title",
-    subtitle: "Artist / Date / Technique",
-    description: "Example text",
+    title: "",
+    subtitle: "",
+    description: `Paintings and tools found at Pompeii | Paolo Fumagalli`,
     image: artwork9Img,
     position: sphericalPosition(333, 14)
   },
   {
     id: "room7-artwork-10",
-    title: "Artwork title",
-    subtitle: "Artist / Date / Technique",
-    description: "Example text",
+    title: "Theatrical Masks and Pictures",
+    subtitle: "Inventory  19057",
+    description:
+      "These early 20th century photographs are a witness-object, pieces that speak of Pompeian antiquity as well as of the history of its redescovery. It documents ancient theatrical masks, likely shortyl after their excavation or in the context of early museum display.",
     images: [
       artwork10_1Img,
       artwork10_2Img,
@@ -146,33 +154,33 @@ export const room7Artworks: InfoHotspot[] = [
   },
   {
     id: "room7-artwork-11",
-    title: "Artwork title",
-    subtitle: "Artist / Date / Technique",
-    description: "Example text",
+    title: "Pompeii, 27th September 1864",
+    subtitle: "Giacinto Gigante | cca 1864 | Pencil, Watercolour",
+    description: "",
     image: artwork11Img,
     position: sphericalPosition(377, 27)
   },
   {
     id: "room7-artwork-12",
-    title: "Artwork title",
-    subtitle: "Artist / Date / Technique",
-    description: "Example text",
+    title: "Street of the Tombs in Pompeii",
+    subtitle: "Giacinto Gigante | cca 1850 | Pencil, Watercolour",
+    description: "",
     image: artwork12Img,
     position: sphericalPosition(377, 8)
   },
   {
     id: "room7-artwork-13",
-    title: "Artwork title",
-    subtitle: "Artist / Date / Technique",
-    description: "Example text",
+    title: "Narcissus at the Spring",
+    subtitle: "Inventory 9385 | 1st c. AD, Fresco, MANN, Naples",
+    description: `This fresco depicts one of the most famous myths the Romans adopted from Greek culture: the story of Narcissus. As narrated by Ovid, Narcissus was a youth of overwhelming beauty, cursed to fall in love with his own reflection in water. The scene captures this fatal moment: Narcissus, leaning over the water, is completely captivated by an impossible passion. The subject was extremely popular, often placed in gardens or near water features, creating a link between the myth and the real environment. The composition is elegant, focusing attention on the isolated figure of Narcissus, turning him into a universal symbol of self-contemplation. The presence of such a sophisticated myth is a testament to the cultural "Grand Tour" the Roman elite undertook towards the Hellenistic world. The fresco of Narcissus represents a cultural statement and an invitation to philosophical meditation on themes such as vanity and illusion.`,
     image: artwork13Img,
     position: sphericalPosition(423, 8)
   },
   {
     id: "room7-artwork-14",
-    title: "Artwork title",
-    subtitle: "Artist / Date / Technique",
-    description: "Example text",
+    title: "Replicas of descoveries from Pompeii",
+    subtitle: "",
+    description: "",
     images: [
       artwork7_1Img,
       artwork7_2Img,
