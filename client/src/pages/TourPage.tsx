@@ -1,30 +1,52 @@
 import "aframe";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
+import ArtworkInfoModal from "../components/artwork-info-modal/ArtworkInfoModal";
 import MiniMap from "../components/mini-map/MiniMap";
 import { rooms } from "../utils/constants/rooms";
 import type {
   AFrameSceneElement,
   Hotspot,
+  InfoHotspot,
   RoomId
 } from "../utils/types/tourTypes";
 
+type LookControlsComponent = {
+  pitchObject: THREE.Object3D;
+  yawObject: THREE.Object3D;
+};
+
+type CameraWithLookControls = HTMLElement & {
+  components?: {
+    ["look-controls"]?: LookControlsComponent;
+  };
+};
+
 export default function TourPage() {
   const sceneRef = useRef<AFrameSceneElement | null>(null);
+  const cameraRef = useRef<HTMLElement | null>(null);
 
   const [currentRoom, setCurrentRoom] = useState<RoomId>("room1");
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [viewerAngle, setViewerAngle] = useState(0);
-  const cameraRef = useRef<HTMLElement | null>(null);
-  const room = rooms[currentRoom];
+  const [selectedArtwork, setSelectedArtwork] = useState<InfoHotspot | null>(
+    null
+  );
 
   const [visibleHotspots, setVisibleHotspots] = useState<
     Array<{ hotspot: Hotspot; x: number; y: number; visible: boolean }>
   >([]);
 
+  const [visibleInfoHotspots, setVisibleInfoHotspots] = useState<
+    Array<{ hotspot: InfoHotspot; x: number; y: number; visible: boolean }>
+  >([]);
+
+  const room = rooms[currentRoom];
+
   const goToRoom = (targetRoom: RoomId) => {
     if (isTransitioning) return;
 
+    setSelectedArtwork(null);
     setIsTransitioning(true);
 
     setTimeout(() => {
@@ -38,29 +60,15 @@ export default function TourPage() {
 
   useEffect(() => {
     const cameraEl = cameraRef.current;
-
     if (!cameraEl) return;
 
     cameraEl.setAttribute("rotation", `0 ${room.spawnYaw} 0`);
 
-    type LookControlsComponent = {
-      pitchObject: THREE.Object3D;
-      yawObject: THREE.Object3D;
-    };
-
-    type CameraWithLookControls = HTMLElement & {
-      components?: {
-        ["look-controls"]?: LookControlsComponent;
-      };
-    };
-
     const typedCameraEl = cameraEl as CameraWithLookControls;
-
     const lookControls = typedCameraEl.components?.["look-controls"];
 
     if (lookControls) {
       lookControls.pitchObject.rotation.x = 0;
-
       lookControls.yawObject.rotation.y = THREE.MathUtils.degToRad(
         room.spawnYaw
       );
@@ -74,18 +82,16 @@ export default function TourPage() {
       const sceneEl = sceneRef.current;
       const camera = sceneEl?.camera;
 
-      if (camera) {
-        const direction = new THREE.Vector3();
-        camera.getWorldDirection(direction);
-
-        const angle = Math.atan2(direction.x, direction.z) * (180 / Math.PI);
-        setViewerAngle(angle);
-      }
-
       if (!camera) {
         animationFrame = requestAnimationFrame(updateHotspots);
         return;
       }
+
+      const direction = new THREE.Vector3();
+      camera.getWorldDirection(direction);
+
+      const angle = Math.atan2(direction.x, -direction.z) * (180 / Math.PI);
+      setViewerAngle(angle);
 
       const width = window.innerWidth;
       const height = window.innerHeight;
@@ -112,13 +118,37 @@ export default function TourPage() {
         };
       });
 
+      const projectedInfoHotspots = (room.infoHotspots ?? []).map((hotspot) => {
+        const projected = hotspot.position.clone();
+        projected.project(camera);
+
+        const x = (projected.x * 0.5 + 0.5) * width;
+        const y = (-projected.y * 0.5 + 0.5) * height;
+
+        return {
+          hotspot,
+          x,
+          y,
+          visible: projected.z < 1 && !isTransitioning && !selectedArtwork
+        };
+      });
+
       setVisibleHotspots(projectedHotspots);
+      setVisibleInfoHotspots(projectedInfoHotspots);
+
       animationFrame = requestAnimationFrame(updateHotspots);
     };
 
     updateHotspots();
+
     return () => cancelAnimationFrame(animationFrame);
-  }, [currentRoom, isTransitioning, room.hotspots]);
+  }, [
+    currentRoom,
+    isTransitioning,
+    room.hotspots,
+    room.infoHotspots,
+    selectedArtwork
+  ]);
 
   return (
     <div
@@ -185,14 +215,51 @@ export default function TourPage() {
               }}
               title={hotspot.label}
             >
-              {"↑"}
+              {hotspot.direction === "next" ? "↑" : "↓"}
             </button>
           )
       )}
+
+      {visibleInfoHotspots.map(
+        ({ hotspot, x, y, visible }) =>
+          visible && (
+            <button
+              key={`${currentRoom}-${hotspot.id}`}
+              onClick={() => setSelectedArtwork(hotspot)}
+              style={{
+                position: "fixed",
+                left: x,
+                top: y,
+                transform: "translate(-50%, -50%)",
+                zIndex: 60,
+                width: 46,
+                height: 46,
+                borderRadius: "50%",
+                border: "2px solid white",
+                background: "rgba(30,144,255,0.75)",
+                color: "white",
+                fontSize: 24,
+                fontWeight: 700,
+                cursor: "pointer",
+                backdropFilter: "blur(6px)",
+                boxShadow: "0 0 18px rgba(30,144,255,0.9)"
+              }}
+              title={hotspot.title}
+            >
+              i
+            </button>
+          )
+      )}
+
       <MiniMap
         currentRoom={currentRoom}
         viewerAngle={viewerAngle}
         onRoomClick={goToRoom}
+      />
+
+      <ArtworkInfoModal
+        artwork={selectedArtwork}
+        onClose={() => setSelectedArtwork(null)}
       />
 
       <div
