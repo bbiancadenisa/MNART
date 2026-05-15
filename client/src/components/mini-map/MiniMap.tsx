@@ -1,4 +1,5 @@
-import museumMap from "../../assets/map.png";
+const museumMap =
+  "https://res.cloudinary.com/do6eyrjis/image/upload/v1778837348/map_pxq3pr.png";
 import { rooms } from "../../utils/constants/rooms";
 import type { RoomId } from "../../utils/types/tourTypes";
 

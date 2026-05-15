@@ -1,15 +1,35 @@
-import room1Img from "../../assets/panoramas/room1.png";
-import room10Img from "../../assets/panoramas/room10.png";
-import room2Img from "../../assets/panoramas/room2.png";
-import room3Img from "../../assets/panoramas/room3.png";
-import room4Img from "../../assets/panoramas/room4.png";
-import room5Img from "../../assets/panoramas/room5.png";
-import room6Img from "../../assets/panoramas/room6.png";
-import room7Img from "../../assets/panoramas/room7.png";
-import room8Img from "../../assets/panoramas/room8.png";
-import room9Img from "../../assets/panoramas/room9.png";
+const room1Img =
+  "https://res.cloudinary.com/do6eyrjis/image/upload/v1778837295/room1_sbjsmr.png";
+const room2Img =
+  "https://res.cloudinary.com/do6eyrjis/image/upload/v1778837298/room2_mlkosg.png";
+const room3Img =
+  "https://res.cloudinary.com/do6eyrjis/image/upload/v1778837300/room3_mduv2d.png";
+const room4Img =
+  "https://res.cloudinary.com/do6eyrjis/image/upload/v1778837302/room4_trbtqb.png";
+const room5Img =
+  "https://res.cloudinary.com/do6eyrjis/image/upload/v1778837304/room5_knpwrq.png";
+const room6Img =
+  "https://res.cloudinary.com/do6eyrjis/image/upload/v1778837306/room6_jgxctf.png";
+const room7Img =
+  "https://res.cloudinary.com/do6eyrjis/image/upload/v1778837309/room7_sqolcg.png";
+const room8Img =
+  "https://res.cloudinary.com/do6eyrjis/image/upload/v1778837311/room8_y6rvng.png";
+const room9Img =
+  "https://res.cloudinary.com/do6eyrjis/image/upload/v1778837313/room9_s0c7uw.png";
+const room10Img =
+  "https://res.cloudinary.com/do6eyrjis/image/upload/v1778837315/room10_cvqpct.png";
 import { sphericalPosition } from "../sphericalPosition";
 import type { RoomConfig, RoomId } from "../types/tourTypes";
+import { room10Artworks } from "./artworks/room10Artworks";
+import { room1Artworks } from "./artworks/room1Artworks";
+import { room2Artworks } from "./artworks/room2Artworks";
+import { room3Artworks } from "./artworks/room3Artworks";
+import { room4Artworks } from "./artworks/room4Artworks";
+import { room5Artworks } from "./artworks/room5Artworks";
+import { room6Artworks } from "./artworks/room6Artworks";
+import { room7Artworks } from "./artworks/room7Artworks";
+import { room8Artworks } from "./artworks/room8Artworks";
+import { room9Artworks } from "./artworks/room9Artworks";
 
 export const rooms = {
   room1: {
@@ -25,7 +45,8 @@ export const rooms = {
         direction: "next",
         position: sphericalPosition(152, 5)
       }
-    ]
+    ],
+    infoHotspots: room1Artworks
   },
 
   room2: {
@@ -47,7 +68,8 @@ export const rooms = {
         direction: "next",
         position: sphericalPosition(55, -8)
       }
-    ]
+    ],
+    infoHotspots: room2Artworks
   },
 
   room3: {
@@ -69,7 +91,8 @@ export const rooms = {
         direction: "next",
         position: sphericalPosition(105, 5)
       }
-    ]
+    ],
+    infoHotspots: room3Artworks
   },
 
   room4: {
@@ -91,7 +114,8 @@ export const rooms = {
         direction: "next",
         position: sphericalPosition(240, 10)
       }
-    ]
+    ],
+    infoHotspots: room4Artworks
   },
 
   room5: {
@@ -113,7 +137,8 @@ export const rooms = {
         direction: "next",
         position: sphericalPosition(155, 10)
       }
-    ]
+    ],
+    infoHotspots: room5Artworks
   },
 
   room6: {
@@ -135,7 +160,8 @@ export const rooms = {
         direction: "next",
         position: sphericalPosition(67, 10)
       }
-    ]
+    ],
+    infoHotspots: room6Artworks
   },
 
   room7: {
@@ -157,7 +183,8 @@ export const rooms = {
         direction: "next",
         position: sphericalPosition(350, 10)
       }
-    ]
+    ],
+    infoHotspots: room7Artworks
   },
 
   room8: {
@@ -179,7 +206,8 @@ export const rooms = {
         direction: "next",
         position: sphericalPosition(87, 10)
       }
-    ]
+    ],
+    infoHotspots: room8Artworks
   },
 
   room9: {
@@ -201,7 +229,8 @@ export const rooms = {
         direction: "next",
         position: sphericalPosition(81, 10)
       }
-    ]
+    ],
+    infoHotspots: room9Artworks
   },
 
   room10: {
@@ -217,6 +246,7 @@ export const rooms = {
         direction: "previous",
         position: sphericalPosition(215, 15)
       }
-    ]
+    ],
+    infoHotspots: room10Artworks
   }
 } satisfies Record<RoomId, RoomConfig>;

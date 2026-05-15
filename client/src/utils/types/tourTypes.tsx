@@ -34,8 +34,19 @@ export type RoomConfig = {
   spawnYaw: number;
   map: RoomMapConfig;
   hotspots: Hotspot[];
+  infoHotspots?: InfoHotspot[];
 };
 
 export type AFrameSceneElement = HTMLElement & {
   camera?: THREE.Camera;
+};
+
+export type InfoHotspot = {
+  id: string;
+  title: string;
+  subtitle?: string;
+  description: string;
+  image?: string;
+  images?: string[];
+  position: THREE.Vector3;
 };
