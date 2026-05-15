@@ -22,16 +22,51 @@ type CameraWithLookControls = HTMLElement & {
   };
 };
 
-export default function TourPage() {
+type TourPageProps = {
+  onEndTour: () => void;
+  audioEnabled: boolean;
+  setAudioEnabled: (value: boolean) => void;
+};
+
+export default function TourPage({
+  onEndTour,
+  audioEnabled,
+  setAudioEnabled
+}: TourPageProps) {
   const sceneRef = useRef<AFrameSceneElement | null>(null);
   const cameraRef = useRef<HTMLElement | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const [currentRoom, setCurrentRoom] = useState<RoomId>("room1");
+  const getInitialRoom = (): RoomId => {
+    const savedRoom = localStorage.getItem("mnart-current-room");
+
+    if (
+      savedRoom === "room1" ||
+      savedRoom === "room2" ||
+      savedRoom === "room3" ||
+      savedRoom === "room4" ||
+      savedRoom === "room5" ||
+      savedRoom === "room6" ||
+      savedRoom === "room7" ||
+      savedRoom === "room8" ||
+      savedRoom === "room9" ||
+      savedRoom === "room10"
+    ) {
+      return savedRoom;
+    }
+
+    return "room1";
+  };
+
+  const [currentRoom, setCurrentRoom] = useState<RoomId>(getInitialRoom);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [viewerAngle, setViewerAngle] = useState(0);
   const [selectedArtwork, setSelectedArtwork] = useState<InfoHotspot | null>(
     null
   );
+
+  const [isMuted, setIsMuted] = useState(!audioEnabled);
+  const [volume, setVolume] = useState(0.35);
 
   const [visibleHotspots, setVisibleHotspots] = useState<
     Array<{ hotspot: Hotspot; x: number; y: number; visible: boolean }>
@@ -42,6 +77,7 @@ export default function TourPage() {
   >([]);
 
   const room = rooms[currentRoom];
+  const isAudioMuted = isMuted || !audioEnabled;
 
   const goToRoom = (targetRoom: RoomId) => {
     if (isTransitioning) return;
@@ -49,14 +85,40 @@ export default function TourPage() {
     setSelectedArtwork(null);
     setIsTransitioning(true);
 
-    setTimeout(() => {
+    window.setTimeout(() => {
+      localStorage.setItem("mnart-current-room", targetRoom);
       setCurrentRoom(targetRoom);
     }, 450);
 
-    setTimeout(() => {
+    window.setTimeout(() => {
       setIsTransitioning(false);
     }, 900);
   };
+
+  const toggleAudio = async () => {
+    const nextMutedState = !isMuted;
+
+    setIsMuted(nextMutedState);
+
+    if (!nextMutedState) {
+      setAudioEnabled(true);
+      localStorage.setItem("tour-sound-enabled", "true");
+      await audioRef.current?.play().catch(() => undefined);
+    } else {
+      localStorage.setItem("tour-sound-enabled", "false");
+    }
+  };
+
+  useEffect(() => {
+    if (!audioRef.current) return;
+
+    audioRef.current.volume = volume;
+    audioRef.current.muted = isAudioMuted;
+
+    if (!isAudioMuted) {
+      audioRef.current.play().catch(() => undefined);
+    }
+  }, [volume, isAudioMuted]);
 
   useEffect(() => {
     const cameraEl = cameraRef.current;
@@ -251,16 +313,101 @@ export default function TourPage() {
           )
       )}
 
+      {currentRoom === "room10" && (
+        <button
+          onClick={onEndTour}
+          style={{
+            position: "fixed",
+            left: "50%",
+            bottom: 42,
+            transform: "translateX(-50%)",
+            zIndex: 90,
+            padding: "18px 42px",
+            borderRadius: 999,
+            border: "2px solid rgba(255,255,255,0.85)",
+            background: "rgba(180, 40, 40, 0.82)",
+            color: "white",
+            fontSize: 18,
+            fontWeight: 800,
+            cursor: "pointer",
+            backdropFilter: "blur(12px)",
+            boxShadow: "0 0 34px rgba(255,80,80,0.65)"
+          }}
+        >
+          Finish Tour
+        </button>
+      )}
+
       <MiniMap
         currentRoom={currentRoom}
         viewerAngle={viewerAngle}
         onRoomClick={goToRoom}
       />
 
+      <div
+        style={{
+          position: "fixed",
+          top: 420,
+          left: 20,
+          zIndex: 2000,
+          background: "rgba(0,0,0,0.55)",
+          backdropFilter: "blur(10px)",
+          border: "1px solid rgba(255,255,255,0.15)",
+          borderRadius: 18,
+          padding: "14px 16px",
+          display: "flex",
+          alignItems: "center",
+          gap: 12
+        }}
+      >
+        <button
+          onClick={toggleAudio}
+          style={{
+            width: 42,
+            height: 42,
+            borderRadius: "50%",
+            border: "1px solid rgba(255,255,255,0.25)",
+            background: "rgba(255,255,255,0.08)",
+            color: "white",
+            cursor: "pointer",
+            fontSize: 18
+          }}
+        >
+          {isAudioMuted ? "🔇" : "🔊"}
+        </button>
+
+        <input
+          type="range"
+          min={0}
+          max={1}
+          step={0.01}
+          value={volume}
+          onChange={(event) => setVolume(Number(event.target.value))}
+          style={{
+            width: 120
+          }}
+        />
+        <button
+          onClick={() => audioRef.current?.play()}
+          style={{
+            border: "1px solid rgba(255,255,255,0.25)",
+            background: "rgba(255,255,255,0.08)",
+            color: "white",
+            borderRadius: 999,
+            padding: "8px 12px",
+            cursor: "pointer"
+          }}
+        >
+          Resume audio
+        </button>
+      </div>
+
       <ArtworkInfoModal
         artwork={selectedArtwork}
         onClose={() => setSelectedArtwork(null)}
       />
+
+      <audio ref={audioRef} src="/audio/museumAmbient.mp3" loop />
 
       <div
         style={{
