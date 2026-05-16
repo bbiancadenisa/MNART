@@ -1,0 +1,57 @@
+.room-narration-box {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1200;
+  width: min(420px, calc(100vw - 48px));
+  max-height: 260px;
+  overflow-y: auto;
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: white;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.room-narration-kicker {
+  margin: 0 0 10px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.room-narration-loading {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.room-narration-error {
+  margin: 0;
+  line-height: 1.6;
+  color: #ffb3b3;
+}
+
+.room-narration-text {
+  margin: 0;
+  line-height: 1.65;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.room-narration-actions {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+}
+
+.room-narration-button {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  cursor: pointer;
+}

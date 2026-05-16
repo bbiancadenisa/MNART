@@ -1,0 +1,82 @@
+.mini-map {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1000;
+  width: 500px;
+  height: 360px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  padding: 12px;
+}
+
+.mini-map-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.mini-map-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  opacity: 0.95;
+}
+
+.mini-map-room-button {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  z-index: 3;
+  padding: 0;
+}
+
+.mini-map-room-button-active {
+  width: 18px;
+  height: 18px;
+  background: #00ff88;
+  box-shadow: 0 0 14px rgba(0, 255, 136, 0.9);
+}
+
+.mini-map-viewer {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  transform-origin: center center;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.mini-map-view-cone {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-left: 32px solid transparent;
+  border-right: 32px solid transparent;
+  border-bottom: 90px solid rgba(0, 255, 136, 0.22);
+  transform: translate(-50%, 0);
+  filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.7));
+}
+
+.mini-map-viewer-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #00ff88;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 16px rgba(0, 255, 136, 1);
+}

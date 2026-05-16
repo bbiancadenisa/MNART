@@ -1,49 +1,41 @@
 import { useEffect, useRef, useState } from "react";
 import "./LandingPage.css";
 
-type LandingPageProps = {
+interface LandingPageProps {
   onStartTour: (audioEnabled: boolean) => void;
-};
+}
 
-export default function LandingPage({ onStartTour }: LandingPageProps) {
+const LandingPage = ({ onStartTour }: LandingPageProps) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const [showVideo, setShowVideo] = useState(false);
-  const [audioChoice, setAudioChoice] = useState<boolean | null>(() => {
-    const savedChoice = localStorage.getItem("tour-sound-enabled");
-
-    if (savedChoice === "true") return true;
-    if (savedChoice === "false") return false;
-
-    return null;
-  });
+  const [audioChoice, setAudioChoice] = useState<boolean | null>(null);
 
   useEffect(() => {
-    const timeout = window.setTimeout(
-      () => {
-        setShowVideo(true);
-      },
-      5 * 60 * 1000
-    );
+    const timeout = window.setTimeout(() => {
+      setShowVideo(true);
+    }, 10 * 1000);
 
     return () => window.clearTimeout(timeout);
   }, []);
 
   const handleAllowSound = async () => {
-    localStorage.setItem("tour-sound-enabled", "true");
     setAudioChoice(true);
     setShowVideo(true);
 
     if (videoRef.current) {
       videoRef.current.muted = false;
-      await videoRef.current.play().catch(() => {});
+      await videoRef.current.play().catch(() => undefined);
     }
   };
 
   const handleDeclineSound = () => {
-    localStorage.setItem("tour-sound-enabled", "false");
     setAudioChoice(false);
     setShowVideo(true);
+  };
+
+  const handleStartTour = () => {
+    onStartTour(audioChoice === true);
   };
 
   return (
@@ -53,7 +45,6 @@ export default function LandingPage({ onStartTour }: LandingPageProps) {
         src="/landing/landing-cover.jpg"
         alt="Museum background"
       />
-
       {showVideo && (
         <video
           ref={videoRef}
@@ -70,11 +61,9 @@ export default function LandingPage({ onStartTour }: LandingPageProps) {
 
       <section className="landing-content">
         <p className="landing-kicker">MNART Virtual Exhibition</p>
-
         <h1 className="landing-title">
           Explore the museum through an immersive virtual tour
         </h1>
-
         <p className="landing-subtitle">
           Navigate between rooms, discover artworks, and interact with the
           exhibition.
@@ -96,7 +85,7 @@ export default function LandingPage({ onStartTour }: LandingPageProps) {
             className={`landing-start-button ${
               showVideo ? "landing-start-button-idle" : ""
             }`}
-            onClick={() => onStartTour(audioChoice)}
+            onClick={() => handleStartTour()}
           >
             Start Tour
           </button>
@@ -104,4 +93,6 @@ export default function LandingPage({ onStartTour }: LandingPageProps) {
       </section>
     </main>
   );
-}
+};
+
+export default LandingPage;

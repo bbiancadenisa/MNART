@@ -1,91 +1,48 @@
 import { useState } from "react";
-import EndTourScreen from "./pages/EndTourScreen";
-import LandingPage from "./pages/LandingPage";
-import QuizPage from "./pages/QuizPage";
-import TourPage from "./pages/TourPage";
-import { clearVisitedArtworks } from "./utils/visitedArtworks";
-
-type AppScreen = "landing" | "tour" | "end" | "quiz";
-
-const getInitialScreen = (): AppScreen => {
-  const savedScreen = localStorage.getItem("mnart-current-screen");
-
-  if (
-    savedScreen === "landing" ||
-    savedScreen === "tour" ||
-    savedScreen === "end"
-  ) {
-    return savedScreen;
-  }
-
-  return "landing";
-};
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import EndTourScreen from "./pages/EndTourPage/EndTourPage";
+import LandingPage from "./pages/LandingPage/LandingPage";
+import QuizPage from "./pages/QuizPage/QuizPage";
+import TourPage from "./pages/TourPage/TourPage";
 
 export default function App() {
-  const [screen, setScreen] = useState<AppScreen>(getInitialScreen);
-  const [audioEnabled, setAudioEnabled] = useState(
-    localStorage.getItem("tour-sound-enabled") === "true"
-  );
+  const [audioEnabled, setAudioEnabled] = useState(false);
   const [isEnteringTour, setIsEnteringTour] = useState(false);
 
-  const goToScreen = (nextScreen: AppScreen) => {
-    localStorage.setItem("mnart-current-screen", nextScreen);
-    setScreen(nextScreen);
-  };
+  const navigate = useNavigate();
 
   const startTour = (allowAudio: boolean) => {
     setAudioEnabled(allowAudio);
-    localStorage.setItem("tour-sound-enabled", String(allowAudio));
-
     setIsEnteringTour(true);
 
-    setTimeout(() => {
-      goToScreen("tour");
+    window.setTimeout(() => {
+      navigate("/tour");
       setIsEnteringTour(false);
     }, 900);
   };
 
-  const returnHomeAndResetTour = () => {
-    localStorage.removeItem("mnart-current-room");
-    clearVisitedArtworks();
-    goToScreen("landing");
-  };
-
   return (
     <>
-      {screen === "landing" && <LandingPage onStartTour={startTour} />}
+      <Routes>
+        <Route path="/" element={<LandingPage onStartTour={startTour} />} />
 
-      {screen === "tour" && (
-        <TourPage
-          onEndTour={() => goToScreen("end")}
-          audioEnabled={audioEnabled}
-          setAudioEnabled={setAudioEnabled}
+        <Route
+          path="/tour"
+          element={
+            <TourPage
+              onEndTour={() => navigate("/end")}
+              audioEnabled={audioEnabled}
+              setAudioEnabled={setAudioEnabled}
+            />
+          }
         />
-      )}
 
-      {screen === "end" && (
-        <EndTourScreen
-          onReturnHome={() => {
-            localStorage.setItem("mnart-current-room", "room1");
-            clearVisitedArtworks();
-            goToScreen("landing");
-            returnHomeAndResetTour();
-          }}
-          onTakeQuiz={() => goToScreen("quiz")}
-        />
-      )}
+        <Route path="/end" element={<EndTourScreen />} />
 
-      {screen === "quiz" && (
-        <QuizPage
-          onReturnHome={() => {
-            localStorage.setItem("mnart-current-room", "room1");
-            clearVisitedArtworks();
-            goToScreen("landing");
-            returnHomeAndResetTour();
-          }}
-          onReturnToTour={() => goToScreen("tour")}
-        />
-      )}
+        <Route path="/quiz" element={<QuizPage />} />
+
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
 
       <div
         style={{

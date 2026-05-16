@@ -1,4 +1,20 @@
 import type * as THREE from "three";
+import type { QuizQuestion } from "./quizzTypes";
+
+export type LookControlsComponent = {
+  pitchObject: THREE.Object3D;
+  yawObject: THREE.Object3D;
+};
+
+export type CameraWithLookControls = HTMLElement & {
+  components?: {
+    ["look-controls"]?: LookControlsComponent;
+  };
+};
+
+export type AFrameSceneElement = HTMLElement & {
+  camera?: THREE.Camera;
+};
 
 export type RoomId =
   | "room1"
@@ -35,19 +51,6 @@ export type RoomConfig = {
   map: RoomMapConfig;
   hotspots: Hotspot[];
   infoHotspots?: InfoHotspot[];
-};
-
-export type AFrameSceneElement = HTMLElement & {
-  camera?: THREE.Camera;
-};
-
-type QuizQuestion = {
-  id: string;
-  artworkId: string;
-  question: string;
-  options: string[];
-  correctAnswerIndex: number;
-  explanation?: string;
 };
 
 export type InfoHotspot = {
