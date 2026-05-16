@@ -45,6 +45,26 @@
 .quiz-content-side {
   padding: 42px;
   overflow-y: auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
+}
+
+.quiz-content-side::-webkit-scrollbar {
+  width: 8px;
+}
+
+.quiz-content-side::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.quiz-content-side::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+}
+
+.quiz-content-side::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.38);
 }
 
 .quiz-kicker {

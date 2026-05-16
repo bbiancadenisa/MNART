@@ -3,6 +3,7 @@ import { gemini, GEMINI_MODEL } from "../lib/gemini.js";
 import { buildQuizPrompt } from "../prompts/quizPrompt.js";
 import type { AiQuizQuestion, ArtworkInput } from "../types/ai.types.js";
 import { cleanArtworks } from "../utils/cleanArtworks.js";
+import { parseGeminiJson } from "../utils/parseGeminiJson.js";
 import { validateQuizQuestions } from "../utils/validateQuizQuestions.js";
 
 export const generateQuiz = async (req: Request, res: Response) => {
@@ -38,7 +39,7 @@ export const generateQuiz = async (req: Request, res: Response) => {
       });
     }
 
-    const parsed = JSON.parse(text) as { questions?: AiQuizQuestion[] };
+    const parsed = parseGeminiJson<{ questions?: AiQuizQuestion[] }>(text);
     const validQuestions = validateQuizQuestions(parsed.questions);
 
     return res.json({
