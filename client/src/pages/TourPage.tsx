@@ -10,6 +10,7 @@ import type {
   InfoHotspot,
   RoomId
 } from "../utils/types/tourTypes";
+import { markArtworkAsVisited } from "../utils/visitedArtworks";
 
 type LookControlsComponent = {
   pitchObject: THREE.Object3D;
@@ -287,7 +288,10 @@ export default function TourPage({
           visible && (
             <button
               key={`${currentRoom}-${hotspot.id}`}
-              onClick={() => setSelectedArtwork(hotspot)}
+              onClick={() => {
+                markArtworkAsVisited(hotspot.id);
+                setSelectedArtwork(hotspot);
+              }}
               style={{
                 position: "fixed",
                 left: x,
