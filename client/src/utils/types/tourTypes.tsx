@@ -41,6 +41,15 @@ export type AFrameSceneElement = HTMLElement & {
   camera?: THREE.Camera;
 };
 
+type QuizQuestion = {
+  id: string;
+  artworkId: string;
+  question: string;
+  options: string[];
+  correctAnswerIndex: number;
+  explanation?: string;
+};
+
 export type InfoHotspot = {
   id: string;
   title: string;
@@ -49,4 +58,5 @@ export type InfoHotspot = {
   image?: string;
   images?: string[];
   position: THREE.Vector3;
+  quizQuestions?: QuizQuestion[];
 };

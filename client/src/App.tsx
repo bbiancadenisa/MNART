@@ -1,9 +1,11 @@
 import { useState } from "react";
 import EndTourScreen from "./pages/EndTourScreen";
 import LandingPage from "./pages/LandingPage";
+import QuizPage from "./pages/QuizPage";
 import TourPage from "./pages/TourPage";
+import { clearVisitedArtworks } from "./utils/visitedArtworks";
 
-type AppScreen = "landing" | "tour" | "end";
+type AppScreen = "landing" | "tour" | "end" | "quiz";
 
 const getInitialScreen = (): AppScreen => {
   const savedScreen = localStorage.getItem("mnart-current-screen");
@@ -43,6 +45,12 @@ export default function App() {
     }, 900);
   };
 
+  const returnHomeAndResetTour = () => {
+    localStorage.removeItem("mnart-current-room");
+    clearVisitedArtworks();
+    goToScreen("landing");
+  };
+
   return (
     <>
       {screen === "landing" && <LandingPage onStartTour={startTour} />}
@@ -59,9 +67,23 @@ export default function App() {
         <EndTourScreen
           onReturnHome={() => {
             localStorage.setItem("mnart-current-room", "room1");
+            clearVisitedArtworks();
             goToScreen("landing");
+            returnHomeAndResetTour();
           }}
-          onTakeQuiz={() => alert("Quiz functionality coming next.")}
+          onTakeQuiz={() => goToScreen("quiz")}
+        />
+      )}
+
+      {screen === "quiz" && (
+        <QuizPage
+          onReturnHome={() => {
+            localStorage.setItem("mnart-current-room", "room1");
+            clearVisitedArtworks();
+            goToScreen("landing");
+            returnHomeAndResetTour();
+          }}
+          onReturnToTour={() => goToScreen("tour")}
         />
       )}
 

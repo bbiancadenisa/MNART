@@ -22,7 +22,37 @@ export const room2Artworks: InfoHotspot[] = [
     description:
       "Just as the Romans were attracted to an exotic and spiritual Egypt (as seen in the cult of (sis), this Baroque masterpiece acts as a dramatic turning point. Varotari captures the violent and sensual moment that connects these two worlds, the Roman and the Egyptian. We witness the final act that sealed the transformation of Ptolemaic Egypt into a Roman province, an event that haunts the consciousness of the imperial city. Varotari paints a tragedy full of pathos. transforming the queen's death into a spectacle that made possible the rise to power represented by Tiberius. This work reveals how each era projects its own nostalgia onto Antiquity. Although Cleopatra's political power was fragile and crumbled before Rome, her tragic legend, through countless interpretations, has acquired its own eternity, becoming a symbol of passions beyond time. Cleopatra sought eternal power; Faced with defeat (fragility), she chose a death that ensured her eternal legend. Varotari, painting her 1,700 years later, reinforces the idea that although her kingdom was fragile, her story became eternal. The ongoing restoration process of the artwork on display reinforces this rituality of myth ",
     image: artwork1Img,
-    position: sphericalPosition(215, 20)
+    position: sphericalPosition(215, 20),
+    quizQuestions: [
+      {
+        id: "room2-artwork-1-q1",
+        question: "What historical event is symbolized by Cleopatra's death?",
+        options: [
+          "The rise of the Greek Empire",
+          "The transformation of Egypt into a Roman province",
+          "The founding of Alexandria",
+          "The fall of the Roman Empire"
+        ],
+        correctAnswerIndex: 1
+      },
+      {
+        id: "room2-artwork-1-q2",
+        question: "Which artistic period does this painting belong to?",
+        options: ["Neoclassicism", "Romanticism", "Baroque", "Renaissance"],
+        correctAnswerIndex: 2
+      },
+      {
+        id: "room2-artwork-1-q3",
+        question: "What theme is emphasized in Cleopatra's portrayal?",
+        options: [
+          "Religious devotion",
+          "Fragility and eternal legend",
+          "Scientific discovery",
+          "Military conquest"
+        ],
+        correctAnswerIndex: 1
+      }
+    ]
   },
   {
     id: "room2-artwork-2",
@@ -31,7 +61,37 @@ export const room2Artworks: InfoHotspot[] = [
     description:
       "This fresco illustrates the climax of a complex myth that connects Greek and Egyptian mythology: the arrival of lo in Egypt. Tormented by Hera, lo wanders the world until she reaches the banks of the Nile, where she is welcomed by the goddess Isis, who restores her human form. The painting is a magnificent example of a Nilotic landscape, a sub-genre that evoked the exotic landscapes of Egypt. The composition is filled with specific elements: architecture with Egyptian motifs and lush vegetation. These scenes reflected the Romans deep fascination with the ancient and mysterious culture of Egypt. This work is a testament to religious syncretism. In the Roman world, lo was often identified with Isis, both being divine figures associated with suffering and salvation. For a follower of the Isiac cult, this fresco represented an allegory of their own spiritual journey.",
     image: artwork2Img,
-    position: sphericalPosition(270, -9)
+    position: sphericalPosition(270, -9),
+    quizQuestions: [
+      {
+        id: "room2-artwork-2-q1",
+        question: "Which goddess restores Io's human form?",
+        options: ["Athena", "Hera", "Isis", "Aphrodite"],
+        correctAnswerIndex: 2
+      },
+      {
+        id: "room2-artwork-2-q2",
+        question: "What type of landscape is depicted in this fresco?",
+        options: [
+          "Urban panorama",
+          "Nilotic landscape",
+          "Battle scene",
+          "Mountain landscape"
+        ],
+        correctAnswerIndex: 1
+      },
+      {
+        id: "room2-artwork-2-q3",
+        question: "What fascinated Romans about Egypt?",
+        options: [
+          "Its military power",
+          "Its democratic government",
+          "Its mysterious and ancient culture",
+          "Its naval technology"
+        ],
+        correctAnswerIndex: 2
+      }
+    ]
   },
   {
     id: "room2-artwork-3_1",
@@ -40,7 +100,37 @@ export const room2Artworks: InfoHotspot[] = [
     description:
       "This bronze bust portrays Tiberius, the second Roman emperor. In the Roman Empire, portraits of rulers were powerful instruments of political propaganda. Distributed throughout the empire, these images consolidated the emperor's presence and authority. Crafted in bronze, a precious material, this portrait signifies its importance. The iconography is official: Tiberius is presented in maturity, with a sober expression that conveys gravitas (dignity) and auctoritas (authority). The classicizing style, inherited from Augustus, links his image to a Golden Age. The discovery of such a portrait in Pompeii is significant. It demonstrates the close ties between this provincial city and the center of power in Rome. The bust's presence was a declaration of loyalty. Looking at this bronze face, we see the expressive embodiment of power and the Roman state.",
     images: [artwork3_1Img, artwork3_2Img],
-    position: sphericalPosition(310, 2)
+    position: sphericalPosition(310, 2),
+    quizQuestions: [
+      {
+        id: "room2-artwork-3-q1",
+        question: "Who is represented in this bronze bust?",
+        options: ["Hadrian", "Tiberius", "Nero", "Augustus"],
+        correctAnswerIndex: 1
+      },
+      {
+        id: "room2-artwork-3-q2",
+        question: "What was the purpose of imperial portraits in Rome?",
+        options: [
+          "Political propaganda",
+          "Military communication",
+          "Religious worship only",
+          "Funeral decoration"
+        ],
+        correctAnswerIndex: 0
+      },
+      {
+        id: "room2-artwork-3-q3",
+        question: "What qualities does Tiberius' expression convey?",
+        options: [
+          "Fear and uncertainty",
+          "Mysticism and devotion",
+          "Dignity and authority",
+          "Humor and joy"
+        ],
+        correctAnswerIndex: 2
+      }
+    ]
   },
   {
     id: "room2-artwork-4",
@@ -49,7 +139,32 @@ export const room2Artworks: InfoHotspot[] = [
     description:
       "This exceptional fresco transports us into the heart of one of Herculaneum's most interesting religious communities: the followers of the Egyptian goddess Isis. Most likely originating from the Temple of Isis, the work is a visual document of rare historical importance. It depicts a public ceremony, a ritual officiated by priests with shaven heads, according to Egyptian tradition. The scene is full of life and specific cultic details. We observe priests carrying ritual objects, such as the sistrum and the situla, while the faithful attend. The pictorial style, narrative and colorful, aims to convey the solemnity and exoticism of the ritual. The presence of Egyptianizing elements underscores the cult's Eastern origins. The extraordinary popularity of the cult of Isis in Pompeii demonstrates the religious syncretism and cultural openness of Roman society. This fresco is a direct testimony to the spiritual diversity of the Empire, allowing us to visualize the practices of a mystery cult celebrated in the templul din Pompei.",
     image: artwork4Img,
-    position: sphericalPosition(370, -10)
+    position: sphericalPosition(370, -10),
+    quizQuestions: [
+      {
+        id: "room2-artwork-4-q1",
+        question: "Which goddess is associated with this ceremony?",
+        options: ["Minerva", "Venus", "Isis", "Demeter"],
+        correctAnswerIndex: 2
+      },
+      {
+        id: "room2-artwork-4-q2",
+        question: "What instrument was commonly used in Isiac rituals?",
+        options: ["Lyre", "Trumpet", "Sistrum", "Flute"],
+        correctAnswerIndex: 2
+      },
+      {
+        id: "room2-artwork-4-q3",
+        question: "What does this fresco reveal about Roman society?",
+        options: [
+          "Its isolation from Egypt",
+          "Its military dominance",
+          "Its rejection of foreign cultures",
+          "Its religious diversity and cultural openness"
+        ],
+        correctAnswerIndex: 3
+      }
+    ]
   },
   {
     id: "room2-artwork-5_1",
@@ -58,6 +173,41 @@ export const room2Artworks: InfoHotspot[] = [
     description:
       "The fresco exemplifies Roman illusionistic wall painting, using architectural perspective and figural decoration to transform interior domestic space into an imagined theatrical environment. Roman artists often used frescoes to make walls appear deeper, richer, and more open than they really were.",
     image: artwork5Img,
-    position: sphericalPosition(473, -8)
+    position: sphericalPosition(473, -8),
+    quizQuestions: [
+      {
+        id: "room2-artwork-5-q1",
+        question: "What artistic technique is central to this fresco?",
+        options: [
+          "Pointillism",
+          "Architectural illusionism",
+          "Minimalism",
+          "Cubism"
+        ],
+        correctAnswerIndex: 1
+      },
+      {
+        id: "room2-artwork-5-q2",
+        question: "What effect did Roman frescoes aim to create?",
+        options: [
+          "A military aesthetic",
+          "A monochrome atmosphere",
+          "The illusion of deeper and richer spaces",
+          "A completely abstract environment"
+        ],
+        correctAnswerIndex: 2
+      },
+      {
+        id: "room2-artwork-5-q3",
+        question: "What type of environment does this fresco imitate?",
+        options: [
+          "A battlefield",
+          "A marketplace",
+          "A theatrical architectural setting",
+          "A temple ruin"
+        ],
+        correctAnswerIndex: 2
+      }
+    ]
   }
 ];

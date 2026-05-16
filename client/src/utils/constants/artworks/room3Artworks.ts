@@ -11,6 +11,37 @@ export const room3Artworks: InfoHotspot[] = [
     description:
       "This fresco brings us into the heart of one of the most important social rituals of the Roman world: the banquet, or convivium. Far from being a simple meal, it was a complex event, a stage upon which the host displayed his wealth, status, and cultural refinement. The scene takes place in a triclinium, the Roman dining room. The painting captures the lively atmosphere of the feast. We see relaxed guests, crowned with garlands, being served by slaves. Such images were served to enhance the sensory experience of the actual banquet, celebrating abundance, friendship, and the pleasures of life (voluptas). Looking at this fresco, we are participating in the banquet of a past memory. Preserved under the ash of Vesuvius, the painting becomes a time capsule, a direct testimony to the customs, social hierarchies and games, to the values of a vanished civilization. It reminds us that art was deeply integrated thread into the social fabric of the city.",
     image: artwork1Img,
-    position: sphericalPosition(-18, 7)
+    position: sphericalPosition(-18, 7),
+    quizQuestions: [
+      {
+        id: "room3-artwork-1-q1",
+        question:
+          "What was the primary purpose of a Roman banquet (convivium)?",
+        options: [
+          "Military planning",
+          "Religious sacrifice only",
+          "Displaying wealth and social status",
+          "Training political leaders"
+        ],
+        correctAnswerIndex: 2
+      },
+      {
+        id: "room3-artwork-1-q2",
+        question: "What was the Roman dining room called?",
+        options: ["Atrium", "Forum", "Peristylium", "Triclinium"],
+        correctAnswerIndex: 3
+      },
+      {
+        id: "room3-artwork-1-q3",
+        question: "What does this fresco mainly preserve for modern viewers?",
+        options: [
+          "Roman social customs and daily life",
+          "Military victories",
+          "Religious prophecies",
+          "Architectural blueprints"
+        ],
+        correctAnswerIndex: 0
+      }
+    ]
   }
 ];
