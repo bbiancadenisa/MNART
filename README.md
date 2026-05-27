@@ -1,6 +1,6 @@
-# ArtView Timișoara
+# MNART
 
-ArtView Timișoara is a web-based virtual guided tour for the Art Museum of Timișoara.
+MNART is a web-based virtual guided tour for the Art Museum of Timișoara.
 
 ## Main idea
 
@@ -33,13 +33,4 @@ The application allows users to explore museum rooms through 360° panoramas, in
 - dotenv
 - CORS
 
-## Current status
-
-Initial project setup.
-
-## Open concerns
-
-- WebXR support depends on the headset/browser.
-- Apple Vision Pro may not support full WebXR VR mode in browser.
-- 360° image quality depends on phone capture and stitching.
-- Museum photography permissions are required.
+### AI integration with GEMINI
