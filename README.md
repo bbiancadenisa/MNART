@@ -34,3 +34,20 @@ The application allows users to explore museum rooms through 360° panoramas, in
 - CORS
 
 ### AI integration with GEMINI
+
+
+Instruction to start project
+
+1. Frontend
+cd client
+npm install
+npm run dev
+make sure you have a file .env created where you have VITE_API_BASE_URL=http://localhost:5000
+3. Backend
+cd server
+npm install
+npm run dev
+make sure you have a .env file created where you have 
+PORT=5000
+CLIENT_URL=http://localhost:5173
+GEMINI_API_KEY="yourkeyhere"
