@@ -3,6 +3,7 @@ import { gemini, GEMINI_MODEL } from "../lib/gemini.js";
 import { buildRoomNarrationPrompt } from "../prompts/roomNarrationPrompt.js";
 import type { RoomNarrationInput } from "../types/ai.types.js";
 import { cleanArtworks } from "../utils/cleanArtworks.js";
+import { parseGeminiJson } from "../utils/parseGeminiJson.js";
 
 export const generateRoomNarration = async (req: Request, res: Response) => {
   try {
@@ -44,7 +45,7 @@ export const generateRoomNarration = async (req: Request, res: Response) => {
       });
     }
 
-    const parsed = JSON.parse(text) as { narration?: string };
+    const parsed = parseGeminiJson<{ narration?: string }>(text);
 
     if (!parsed.narration) {
       return res.status(500).json({
