@@ -1,0 +1,78 @@
+.tour-container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: black;
+}
+
+.info-hotspot-button {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  z-index: 60;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background: rgba(28, 68, 227, 0.523);
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 18px rgba(30, 75, 255, 0.775);
+}
+
+.finish-tour-button {
+  position: fixed;
+  left: 50%;
+  bottom: 42px;
+  transform: translateX(-50%);
+  z-index: 90;
+  padding: 18px 42px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  background: rgba(180, 40, 40, 0.82);
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 34px rgba(255, 80, 80, 0.65);
+}
+
+.audio-button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.hotspot-button {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid white;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+
+.hotspot-button-next {
+  background: rgba(6, 130, 62, 0.833);
+  box-shadow: 0 0 20px rgba(3, 240, 114, 0.719);
+}
+
+.hotspot-button-prev {
+  background: rgba(160, 17, 17, 0.798);
+  box-shadow: 0 0 20px rgba(215, 48, 48, 0.865);
+}
